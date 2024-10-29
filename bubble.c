@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void bubblesort(int vec[], int n) {
+void bubble(int vec[], int n) {
     int aux;
     int swaps = 1;
 
@@ -33,7 +33,7 @@ int main(void) {
     }
 
     clock_t inicio = clock();
-    bubblesort(vec, n);
+    bubble(vec, n);
     clock_t fim = clock();
 
     printf("Tempo decorrido: %lf segundos\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
