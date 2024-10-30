@@ -2,18 +2,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int partition(ITEM* vec[], int start, int end) {
+int partition(int vec[], int start, int end) {
     int mid = (start + end) / 2;
-    ITEM* pivot = vec[mid];
+    int pivot = vec[mid];
 
     // mover pivot para o fim
-    ITEM* aux = vec[end];
+    int aux = vec[end];
     vec[end] = pivot;
     vec[mid] = aux;
 
     int i = start - 1; //if start = 0 then i = -1
     for (int j = start; j < end; j++) {
-        if (item_get_key(vec[j]) < item_get_key(pivot)) {
+        if (vec[j] < pivot) {
             i++;
 
             aux = vec[j];
@@ -30,7 +30,7 @@ int partition(ITEM* vec[], int start, int end) {
     return(i+1); //posicão do pivo
 }
 
-void quick(ITEM* vec[], int start, int end) {
+void quick(int vec[], int start, int end) {
     if (start >= end) {
        return;
     }
