@@ -15,3 +15,4 @@ heap:
 
 clear:
 	rm bubble selection insertion quick heap 
+
