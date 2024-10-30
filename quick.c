@@ -2,30 +2,49 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int partition(int vec[], int start, int end) {
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int median(int vec[], int start, int end) {
     int mid = (start + end) / 2;
-    int pivot = vec[mid];
+
+    //ordenando os dados para achar a mediana
+    if (vec[start] > vec[mid]) {
+        swap(&vec[start], &vec[mid]);
+    }
+
+    if (vec[start] > vec[end]) {
+        swap(&vec[start], &vec[end]);
+    }
+
+    if (vec[end] < vec[mid]) {
+        swap(&vec[end], &vec[mid]);
+    }
+
+    return(mid);
+}
+
+int partition(int vec[], int start, int end) {
+    int med = median(vec, start, end);
+    int pivot = vec[med];
 
     // mover pivot para o fim
-    int aux = vec[end];
-    vec[end] = pivot;
-    vec[mid] = aux;
+    swap(&vec[end], &vec[med]);
 
     int i = start - 1; //if start = 0 then i = -1
     for (int j = start; j < end; j++) {
         if (vec[j] < pivot) {
             i++;
 
-            aux = vec[j];
-            vec[j] = vec[i];
-            vec[i] = aux;
+            swap(&vec[j], &vec[i]);
         }
     }
 
     //fazer swap ultima vez (colocar pivo na posição)
-    aux = vec[end];
-    vec[end] = vec[i+1];
-    vec[i+1] = aux;
+    swap(&vec[end], &vec[i+1]);
 
     return(i+1); //posicão do pivo
 }
