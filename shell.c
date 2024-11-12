@@ -3,7 +3,7 @@
 #include <time.h>
 
 void shell(int* vec, int tam) {
-    int h = tam / 5;
+    int h = tam / 2;
 
     while (h >= 1) {
         printf("h: %d\n", h);
@@ -17,7 +17,7 @@ void shell(int* vec, int tam) {
             }
         }
 
-        h--;
+        h /= 2;
     }
 }
 
