@@ -6,7 +6,6 @@ void shell(int* vec, int tam) {
     int h = tam / 2;
 
     while (h >= 1) {
-        printf("h: %d\n", h);
         for (int i = tam-1; i >= 0; i -= h) {
             for (int j = i - h; j >= 0; j -= h) {
                 if((vec[i] < vec[j]) && (j >= 0)) {
