@@ -14,7 +14,7 @@ void merge_sort(int *vec, int ini, int fim) {
     merge_sort(vec, ini, meio);
     merge_sort(vec, meio + 1, fim);
 
-    merge(*vec, ini, fim);
+    merge(vec, ini, fim);
 }
 
 int main(void) {

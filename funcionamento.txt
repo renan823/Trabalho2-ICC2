@@ -1,0 +1,6 @@
+Para rodar os casos de teste, siga as seguintes instruções:
+ - Na pasta principal, execute "make" para buildar os programas
+ - Na pasta de testes, execute "make" para gerar os testes
+ - Na pasta principal, use o comando "python resultados.py" para rodar os testes
+
+Os resultados estarão em "resultados.csv"
