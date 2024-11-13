@@ -76,13 +76,8 @@ int main(void) {
     quick(vec, 0, n-1);
     clock_t fim = clock();
 
-    printf("Tempo decorrido: %lf segundos\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
+    printf("%lf\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
 
-    //debug
-    for (int i = 0; i < n; i++) {
-        printf("%d\n", vec[i]);
-    }
-    
     free(vec);
 
     return(0);

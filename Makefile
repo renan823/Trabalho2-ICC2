@@ -1,3 +1,5 @@
+all: bubble selection insertion quick heap merge shell radix contagem
+
 bubble:
 	gcc bubble.c -std=c99 -Wall -o bubble
 	
@@ -23,7 +25,7 @@ radix:
 	gcc radix.c -std=c99 -Wall -o radix
 
 contagem:
-	gcc contagem_menore.c -std=c99 -Wall -o contagem
+	gcc contagem.c -std=c99 -Wall -o contagem
 
 clear:
 	rm bubble selection insertion quick heap merge shell radix contagem

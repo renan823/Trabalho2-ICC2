@@ -79,13 +79,7 @@ int main(void) {
     contagem_menores(vec, n);
     clock_t fim = clock();
 
-    printf("Tempo decorrido: %lf segundos\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
-
-    //debug
-    for (int i = 0; i < n; i++) {
-        printf("%d ", vec[i]);
-    }
-    printf("\n");
+    printf("%lf\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
 
     free(vec);
 

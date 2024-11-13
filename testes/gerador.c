@@ -4,12 +4,12 @@
 #include <string.h>
 
 /*
-Para usar, indique o numero de casos e o modo (normal | reverse | random)
+Para usar, indique o numero de casos, o modo (normal | reverse | random) e o arquivo saida (opcional)
 Um arquivo sera criado como <modo>_<numero de casos>.txt
 */
 
 int main(int argc, char* argv[]) {
-    if (argc != 3) {
+    if (argc < 3) {
         exit(1);
     }
 
@@ -17,7 +17,12 @@ int main(int argc, char* argv[]) {
 
     //Abrir arquivo para gravar (filename = argv[2]_<n>.txt)
     char filename[30];
-    snprintf(filename, sizeof(filename), "%s_%d.txt", argv[2], n);
+    if (argc == 4) {
+        strcpy(filename, argv[3]);
+    } else {
+        snprintf(filename, sizeof(filename), "%s_%d.txt", argv[2], n);
+    }
+    
     FILE* file = fopen(filename, "w");
 
     if (file == NULL) {
