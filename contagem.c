@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-/*
 void contagem_menores(int *vec, int n) {
     int max = vec[0];
     for (int i = 1; i < n; i++) {
@@ -23,7 +22,7 @@ void contagem_menores(int *vec, int n) {
 
     int *ordenado = (int*) malloc(sizeof(int) * n);
 
-    for (int i = n-1, i >= 0, i--) {
+    for (int i = n-1; i >= 0; i--) {
         ordenado[contagem[vec[i]] -1] = vec[i];
         contagem[vec[i]]--;
     }
@@ -34,32 +33,6 @@ void contagem_menores(int *vec, int n) {
 
     free(contagem);
     free(ordenado);
-}
-
-*/
-
-void contagem_menores(int *vec, int tam) {
-    int *vec_menores = (int *)calloc(sizeof(int), tam);
-
-    for (int i = 1; i < tam; i++){
-        for (int j = i - 1; j >= 0; j--){
-            if(vec[i] < vec[j]) {
-                vec_menores[j]++;
-            } else {
-                vec_menores[i]++;
-            }
-        }
-    }
-
-    int *vec_ordenado = (int*) malloc(sizeof(int) * tam);
-
-    for (int i = 0; i < tam; i++){
-        vec_ordenado[vec_menores[i]] = vec[i];
-    }
-
-    for (int i = 0; i < tam; i++) {
-        vec[i] = vec_ordenado[i];
-    }
 }
 
 int main(void) {
