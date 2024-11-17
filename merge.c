@@ -62,11 +62,6 @@ int main(void) {
     merge_sort(vec, 0, n-1);
     clock_t fim = clock();
 
-    for (int i = 0; i < n; i++) {
-        printf("%d ", vec[i]);
-    }
-    printf("\n");
-
     printf("%lf\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
 
     free(vec);

@@ -33,8 +33,8 @@ for alg in algortimos:
 
             df.loc[len(df)] = {
                 'algoritmo': alg,
-                'caso': caso_teste[0].split("/")[0],
-                'tamanho': caso_teste[1],
+                'caso': caso_teste[0].split("/")[1],
+                'tamanho': caso_teste[1].replace(".txt", ""),
                 'tempo': tempo
             }
         except Exception as e:
