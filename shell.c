@@ -3,22 +3,20 @@
 #include <time.h>
 
 void shell(int* vec, int tam) {
-    int h = tam / 2;
+    for (int h = tam / 2; h > 0; h /= 2) { 
+        for (int i = h; i < tam; i++) {
+            int temp = vec[i]; 
+            int j;
 
-    while (h >= 1) {
-        for (int i = tam-1; i >= 0; i -= h) {
-            for (int j = i - h; j >= 0; j -= h) {
-                if((vec[i] < vec[j]) && (j >= 0)) {
-                    int temp = vec[i];
-                    vec[i] = vec[j];
-                    vec[j] = temp;
-                }
+            for (j = i; j >= h && vec[j - h] > temp; j -= h) {
+                vec[j] = vec[j - h];
             }
-        }
 
-        h /= 2;
+            vec[j] = temp;
+        }
     }
 }
+
 
 int main(void) {
     int n;
