@@ -6,28 +6,24 @@ int contador_comp_chave = 0;
 int contador_trocas = 0;
 
 void merge(int *vec, int ini, int fim, int meio) {
-    int i, j, k, n1, n2;
+    int n1 = meio - ini + 1;
+    int n2 = fim - meio;
 
-    n1 = meio - ini + 1;
-    n2 = fim - meio;
+    int L[n1], R[n2];
 
-    int L[n1+1], R[n2+1];
-
-    for (i = 0; i < n1; i++) {
+    for (int i = 0; i < n1; i++) {
         L[i] = vec[ini + i];
+        contador_trocas++;
     }
 
-    L[n1] = 9999;
-
-    for(j = 0; j < n2; j++) {
+    for (int j = 0; j < n2; j++) {
         R[j] = vec[meio + 1 + j];
+        contador_trocas++;
     }
 
-    R[n2] = 9999;
+    int i = 0, j = 0;
 
-    i = j = 0;
-
-    for (k = ini; k <= fim; k++) {
+    for (int k = ini; k <= fim; k++) {
         if (L[i] <= R[j]) {
             vec[k] = L[i];
             i++;
@@ -35,19 +31,17 @@ void merge(int *vec, int ini, int fim, int meio) {
             vec[k] = R[j];
             j++;
         }
+        contador_comp_chave++;
     }
 }
 
 void merge_sort(int *vec, int ini, int fim) {
-    if(ini < fim) {
+    if (ini < fim) {
         int meio = (ini + fim) / 2;
         merge_sort(vec, ini, meio);
         merge_sort(vec, meio + 1, fim);
         merge(vec, ini, fim, meio);
-        contador_trocas++;
     }
-    contador_comp_chave++;
-    return;
 }
 
 int main(void) {

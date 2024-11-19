@@ -9,6 +9,7 @@ void swap(int* a, int* b) {
     int temp = *a;
     *a = *b;
     *b = temp;
+    contador_trocas++;
 }
 
 int median(int vec[], int start, int end) {
@@ -16,14 +17,17 @@ int median(int vec[], int start, int end) {
 
     //ordenando os dados para achar a mediana
     if (vec[start] > vec[mid]) {
+        contador_comp_chave++;
         swap(&vec[start], &vec[mid]);
     }
 
     if (vec[start] > vec[end]) {
+        contador_comp_chave++;
         swap(&vec[start], &vec[end]);
     }
 
     if (vec[end] < vec[mid]) {
+        contador_comp_chave++;
         swap(&vec[end], &vec[mid]);
     }
 
@@ -39,6 +43,7 @@ int partition(int vec[], int start, int end) {
 
     int i = start - 1; //if start = 0 then i = -1
     for (int j = start; j < end; j++) {
+        contador_comp_chave++;
         if (vec[j] < pivot) {
             i++;
 
@@ -48,7 +53,6 @@ int partition(int vec[], int start, int end) {
 
     //fazer swap ultima vez (colocar pivo na posição)
     swap(&vec[end], &vec[i+1]);
-    contador_trocas++;
 
     return(i+1); //posicão do pivo
 }

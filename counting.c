@@ -11,6 +11,7 @@ void contagem_menores(int *vec, int n) {
         if (vec[i] > max) {
             max = vec[i];
         }
+        contador_comp_chave++;
     }
 
     int *contagem = (int *) calloc(sizeof(int), max); //inicia com zero já
@@ -20,6 +21,7 @@ void contagem_menores(int *vec, int n) {
     }
 
     for (int i = 1; i <= max; i++) {
+        contador_comp_chave++;
         contagem[i] += contagem[i - 1];
     }
 
@@ -27,11 +29,13 @@ void contagem_menores(int *vec, int n) {
 
     for (int i = n-1; i >= 0; i--) {
         ordenado[contagem[vec[i]] -1] = vec[i];
+        contador_trocas++;
         contagem[vec[i]]--;
     }
 
     for (int i = 0; i < n; i++) {
         vec[i] = ordenado[i];
+        contador_trocas++;
     }
 
     free(contagem);

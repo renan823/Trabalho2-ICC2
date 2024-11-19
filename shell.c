@@ -16,13 +16,11 @@ void shell(int* vec, int tam) {
                 contador_comp_chave++;
             }
 
-
             vec[j] = temp;
             contador_trocas++;
         }
     }
 }
-
 
 int main(void) {
     int n;

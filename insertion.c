@@ -15,6 +15,7 @@ void insertion(int vec[], int n) {
             j = j - 1;
             contador_comp_chave++;
         }
+        contador_comp_chave++;
         vec[j + 1] = key;
         contador_trocas++;
     }

@@ -18,7 +18,7 @@ int maior(int *vec, int n) {
 
 void counting(int *vec, int n, int exp) {
     int max = maior(vec, n);
-    int *contagem = (int *) calloc(sizeof(int), max); //inicia com zero já
+    int *contagem = (int *) calloc(sizeof(int), max);
 
     for (int i = 0; i < n; i++) {
         contagem[(vec[i] / exp) % 10]++;
@@ -46,8 +46,6 @@ void counting(int *vec, int n, int exp) {
 void radix(int* vec, int n) {
     int digitos = maior(vec, n);
 
-    //vai aumetnado e movendo a casa nos digitos
-    //usa o counting pra ordenar baseado no digito do exp
     for (int exp = 1; digitos / exp > 0; exp *= 10) {
         counting(vec, n, exp);
     }

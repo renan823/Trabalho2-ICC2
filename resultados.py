@@ -38,7 +38,7 @@ for alg in algortimos:
             caso_teste = teste.split("_")
 
             df.loc[len(df)] = {
-                'algoritmo': alg.split(".")[0],
+                'algoritmo': alg,
                 'caso': caso_teste[0].split("/")[1],
                 'tamanho': caso_teste[1].replace(".txt", ""),
                 'tempo': tempo,
