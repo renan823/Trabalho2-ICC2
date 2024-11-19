@@ -14,7 +14,9 @@ def run(algoritmo: str, entradas: str):
 
     try:
         # Usando Decimal para maior precisão
-        return Decimal(processo.stdout.strip())
+        resultado = processo.stdout.strip().split()
+
+        return (Decimal(resultado[0]), int(resultado[1]), int(resultado[2]))
     except InvalidOperation as e:
         print(e)
         raise Exception("Falha ao receber o tempo de execução")
@@ -23,12 +25,12 @@ def run(algoritmo: str, entradas: str):
 algortimos = glob("*.c")
 testes = glob("testes/*.txt")
 
-df = pd.DataFrame(columns=["algoritmo", "caso", "tamanho", "tempo"])
+df = pd.DataFrame(columns=["algoritmo", "caso", "tamanho", "tempo", "trocas", "comparacoes"])
 
 for alg in algortimos:
     for teste in testes:
         try:
-            tempo = run(alg, teste)
+            tempo, comp, trocas = run(alg, teste)
 
             #debug (pra saber se ele nao morreu no processo)
             print(f"- {alg} caso {teste} em {tempo}")
@@ -36,10 +38,12 @@ for alg in algortimos:
             caso_teste = teste.split("_")
 
             df.loc[len(df)] = {
-                'algoritmo': alg,
+                'algoritmo': alg.split(".")[0],
                 'caso': caso_teste[0].split("/")[1],
                 'tamanho': caso_teste[1].replace(".txt", ""),
-                'tempo': tempo
+                'tempo': tempo,
+                'trocas': trocas,
+                'comparacoes': comp
             }
         except Exception as e:
             print(e)

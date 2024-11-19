@@ -83,8 +83,8 @@ int main(void) {
 
     printf("%lf\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
 
-    printf("Número de comparações: %d\n", contador_comp_chave);
-    printf("Número de trocas: %d\n", contador_trocas);
+    printf("%d\n", contador_comp_chave);
+    printf("%d\n", contador_trocas);
 
     free(vec);
 
