@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int contador_comp_chave = 0;
+int contador_trocas = 0;
+
 void swap(int* a, int* b) {
     int temp = *a;
     *a = *b;
@@ -45,6 +48,7 @@ int partition(int vec[], int start, int end) {
 
     //fazer swap ultima vez (colocar pivo na posição)
     swap(&vec[end], &vec[i+1]);
+    contador_trocas++;
 
     return(i+1); //posicão do pivo
 }
@@ -53,6 +57,7 @@ void quick(int vec[], int start, int end) {
     if (start >= end) {
        return;
     }
+    contador_comp_chave++;
 
     int pivotPos = partition(vec, start, end);
     quick(vec, start, pivotPos-1);
@@ -77,6 +82,9 @@ int main(void) {
     clock_t fim = clock();
 
     printf("%lf\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
+
+    printf("Número de comparações: %d\n", contador_comp_chave);
+    printf("Número de trocas: %d\n", contador_trocas);
 
     free(vec);
 

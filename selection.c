@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int contador_comp_chave = 0;
+int contador_trocas = 0;
+
 void selection(int vec[], int n) {
     int aux;
 
@@ -11,12 +14,14 @@ void selection(int vec[], int n) {
             if (vec[j] < vec[min]) {
                 min = j;
             }
+            contador_comp_chave++;
         }
 
         if (min != i) {
             aux = vec[min];
             vec[min] = vec[i];
             vec[i] = aux;
+            contador_trocas++;
         }
     }
 }
@@ -39,6 +44,9 @@ int main(void) {
     clock_t fim = clock();
 
     printf("%lf\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
+
+    printf("Número de comparações: %d\n", contador_comp_chave);
+    printf("Número de trocas: %d\n", contador_trocas);
     
     free(vec);
 

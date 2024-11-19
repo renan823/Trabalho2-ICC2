@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int contador_comp_chave = 0;
+int contador_trocas = 0;
+
 void bubble(int vec[], int n) {
     int aux;
     int swaps = 1;
@@ -14,7 +17,9 @@ void bubble(int vec[], int n) {
                 vec[j] = vec[j+1];
                 vec[j+1] = aux;
                 swaps++;
+                contador_trocas++;
             }
+            contador_comp_chave++;
         }
     } 
 }
@@ -37,6 +42,9 @@ int main(void) {
     clock_t fim = clock();
 
     printf("%lf\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
+
+    printf("Número de comparações: %d\n", contador_comp_chave);
+    printf("Número de trocas: %d\n", contador_trocas);
     
     free(vec);
 

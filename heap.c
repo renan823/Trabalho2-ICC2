@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int contador_comp_chave = 0;
+int contador_trocas = 0;
+
 void heap_rearrange(int vec[], int n, int index) {
     int left, right, max;
     int aux;
@@ -10,18 +13,22 @@ void heap_rearrange(int vec[], int n, int index) {
     right = 2*index + 2;
     max = index;
 
+
     if (left < n && vec[left] > vec[max]) {
         max = left;
     }
+    contador_comp_chave++;
 
     if (right < n && vec[right] > vec[max]) {
         max = right;
     }
+    contador_comp_chave++;
 
     if (max != index) {
         aux = vec[index];
         vec[index] = vec[max];
         vec[max] = aux;
+        contador_trocas++;
 
         heap_rearrange(vec, n, max);
     }
@@ -68,6 +75,9 @@ int main(void) {
     clock_t fim = clock();
 
     printf("%lf\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
+
+    printf("Número de comparações: %d\n", contador_comp_chave);
+    printf("Número de trocas: %d\n", contador_trocas);
 
     free(vec);
 

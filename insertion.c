@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int contador_comp_chave = 0;
+int contador_trocas = 0;
+
 void insertion(int vec[], int n) {
     for (int i = 1; i < n; i++) {
         int key = vec[i];
@@ -10,8 +13,10 @@ void insertion(int vec[], int n) {
         while (j >= 0 && vec[j] > key) {
             vec[j + 1] = vec[j];
             j = j - 1;
+            contador_comp_chave++;
         }
         vec[j + 1] = key;
+        contador_trocas++;
     }
 }
 
@@ -33,6 +38,9 @@ int main(void) {
     clock_t fim = clock();
 
     printf("%lf\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
+
+    printf("Número de comparações: %d\n", contador_comp_chave);
+    printf("Número de trocas: %d\n", contador_trocas);
 
     free(vec);
 

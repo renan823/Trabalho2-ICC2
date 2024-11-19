@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 
+int contador_comp_chave = 0;
+int contador_trocas = 0;
+
 void merge(int *vec, int ini, int fim, int meio) {
     int i, j, k, n1, n2;
 
@@ -41,7 +44,9 @@ void merge_sort(int *vec, int ini, int fim) {
         merge_sort(vec, ini, meio);
         merge_sort(vec, meio + 1, fim);
         merge(vec, ini, fim, meio);
+        contador_trocas++;
     }
+    contador_comp_chave++;
     return;
 }
 
@@ -63,6 +68,9 @@ int main(void) {
     clock_t fim = clock();
 
     printf("%lf\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
+
+    printf("Número de comparações: %d\n", contador_comp_chave);
+    printf("Número de trocas: %d\n", contador_trocas);
 
     free(vec);
 

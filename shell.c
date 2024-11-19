@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 
+int contador_comp_chave = 0;
+int contador_trocas = 0;
+
 void shell(int* vec, int tam) {
     for (int h = tam / 2; h > 0; h /= 2) { 
         for (int i = h; i < tam; i++) {
@@ -10,9 +13,12 @@ void shell(int* vec, int tam) {
 
             for (j = i; j >= h && vec[j - h] > temp; j -= h) {
                 vec[j] = vec[j - h];
+                contador_comp_chave++;
             }
 
+
             vec[j] = temp;
+            contador_trocas++;
         }
     }
 }
@@ -36,6 +42,9 @@ int main(void) {
     clock_t fim = clock();
 
     printf("%lf\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
+
+    printf("Número de comparações: %d\n", contador_comp_chave);
+    printf("Número de trocas: %d\n", contador_trocas);
     
     free(vec);
 
